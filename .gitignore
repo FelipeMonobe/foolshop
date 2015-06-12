@@ -3,3 +3,4 @@ node_modules/
 .settings/
 gulpfile.js
 public/libs/**
+readme.md
