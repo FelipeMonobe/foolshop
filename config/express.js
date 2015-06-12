@@ -1,16 +1,23 @@
 var express = require('express'),
-	bodyParser = require('body-parser');
+	bodyParser = require('body-parser'),
+	load = require('express-load');
 
 module.exports = function() {
 	var app = express();
 	
-	app.use(bodyParser.urlencoded({
-        extended: true
-    }));
-	
+	//ambient configs
 	app.set('views', './app/views');
 	app.set('view engine', 'ejs');
+	
+	//middleware configs
+	app.use(bodyParser.urlencoded({ extended: true }));
+	app.use(bodyParser.json());
 	app.use(express.static('./public'));
-	require('../app/routes/server.routes.js')(app);
+	
+    load('models', { cwd: 'app' })
+    	.then('controllers')
+    	.then('routes')
+    	.into(app);
+	
 	return app;
 };
