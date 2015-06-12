@@ -11,5 +11,5 @@ module.exports = function() {
 		creationDate: { type: Date, default: Date.now },
 		isActive: { type: Boolean, required: true }
 	});
-	mongoose.model('Product', schema);
+	return mongoose.model('Product', schema);
 };
