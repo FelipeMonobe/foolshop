@@ -1,0 +1,26 @@
+<h1>products</h1>
+<button class="btn btn-primary" title="Add new products"><span class="glyphicon glyphicon-plus"></span></button>
+<div>
+	<div class="productbox" ng-repeat="item in vm.products">		
+		<div>
+			<label>Product:</label>
+			<label>{{item.name}}</label>
+		</div>		
+		<div>
+			<label>Stock:</label>
+			<label>{{item.stock}}</label>
+		</div>		
+		<div>
+			<label>Description:</label>
+			<label>{{item.description}}</label>
+		</div>		
+		<div>
+			<label>Brand:</label>
+			<label>{{item.brand}}</label>
+		</div>		
+		<div>
+			<label>Price:</label>
+			<label>${{item.price}}</label>
+		</div>
+	</div>	
+</div>
