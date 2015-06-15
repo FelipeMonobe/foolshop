@@ -2,7 +2,7 @@ module.exports = function(app) {
 	var Product = app.models.product,
 		controller = {};
 	
-	controller.getProducts = function(req, res) {
+	controller.getProduct = function(req, res) {
 		Product
 		.find({ isActive: true })
 		.exec()

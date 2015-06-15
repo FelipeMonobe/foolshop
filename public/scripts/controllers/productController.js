@@ -1,9 +1,9 @@
 (function() {
 	angular
 	.module('app')
-	.controller('ProductsController', productsController);
+	.controller('ProductController', productController);
 		
-	function productsController() {
+	function productController() {
 		var vm = this;
 		vm.products = [];
 		

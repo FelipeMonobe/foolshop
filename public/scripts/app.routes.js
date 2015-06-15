@@ -15,12 +15,12 @@
 		.when('/products', {
 			templateUrl: 'views/products.html',
 			controllerAs: 'vm',
-			controller: 'ProductsController'			
+			controller: 'ProductController'			
 		})
 		.when('/partners', {
 			templateUrl: 'views/partners.html',
 			controllerAs: 'vm',
-			controller: 'PartnersController'			
+			controller: 'PartnerController'			
 		})
 		.when('/contact', {
 			templateUrl: 'views/contact.html',
