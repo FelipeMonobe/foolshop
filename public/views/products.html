@@ -1,7 +1,12 @@
 <h1>products</h1>
-<button class="btn btn-primary" title="Add new products"><span class="glyphicon glyphicon-plus"></span></button>
+<button ng-click="vm.btn_AddProduct()" class="btn btn-primary" title="Add new products"><span class="glyphicon glyphicon-plus"></span></button>
 <div>
-	<div class="productbox" ng-repeat="item in vm.products">		
+	<div class="productContainer" ng-repeat="item in vm.products">
+		<button ng-click="vm.btn_RemoveProduct(item.id)" class="btn btn-danger" title="Remove this product"><span class="glyphicon glyphicon-remove"></span></button>
+		<div>
+			<label>Code:</label>
+			<label>{{item.id}}</label>
+		</div>	
 		<div>
 			<label>Product:</label>
 			<label>{{item.name}}</label>

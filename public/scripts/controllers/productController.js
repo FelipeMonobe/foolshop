@@ -3,12 +3,38 @@
 	.module('app')
 	.controller('ProductController', productController);
 	
-	productController.$inject = ['productService'];
+	productController.$inject = ['productService', '$location', '$alert'];
 		
-	function productController(productService) {
+	function productController(productService, $location, $alert) {
 		var vm = this;
+		
+		vm.btn_AddProduct = addProduct;
+		vm.btn_RemoveProduct = removeProduct;
 		vm.products = [];
 		vm.fetchProduct = fetchProduct;
+		
+		(function init() {
+			vm.fetchProduct();
+			})();
+		
+		function addProduct() {
+			var mock = {
+				id: 22,
+				name: 'Mock2',
+				stock: 9001,
+				description: undefined,
+				brand: undefined,
+				price: 13.37,
+				creationDate: undefined,
+				isActive: true
+			};
+			
+			return productService.addProduct(mock)
+			.then(function(data) {
+				vm.products = data;
+				return vm.products;
+			});
+		}
 		
 		function fetchProduct() {
 			return productService.getProduct()
@@ -18,21 +44,8 @@
 			});
 		}
 		
-		// vm.products = [
-		// 	{
-		// 		name: 'Product #1',
-		// 		stock: 23,
-		// 		description: 'Blabla',
-		// 		brand: 'Tora',
-		// 		price: 53.22
-		// 	},
-		// 	{
-		// 		name: 'Product #2',
-		// 		stock: 5,
-		// 		description: 'Blabla',
-		// 		brand: 'Xong',
-		// 		price: 33.28
-		// 	}
-		// ];
+		function removeProduct(id) {
+			return productService.removeProduct(id);
+		}
 	}	
 })();
