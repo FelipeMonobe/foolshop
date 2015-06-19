@@ -1,66 +1,73 @@
 <!DOCTYPE html>
 <html ng-app="app">
-<head>
-	<link type="text/css" rel="stylesheet" href="./libs/bootstrap/dist/css/bootstrap.css">
-	<link type="text/css" rel="stylesheet" href="./libs/angular-motion/dist/angular-motion.css">
-	<link type="text/css" rel="stylesheet" href="./libs/bootstrap-additions/dist/bootstrap-additions.css">
-	<link type="text/css" rel="stylesheet" href="./libs/bootstrap/dist/css/bootstrap-theme.css">
-	<link type="text/css" rel="stylesheet" href="./css/master.css">
-	<title>FoolShop!</title>
-</head>
-<body>
-	<div id="wrapper">		
-		<header>
-			<span class="logo">FoolS</span>
-			<span class="logo sub">hop!</span>
-			<small><i>Where you can't buy a thing at all...</i></small>
-		
-			<nav class="navbar navbar-default" role="navigation" bs-navbar>
-				<div class="navbar-header" ng-controller="AsideController">
-					<a class="navbar-brand" href="" data-placement="left" data-animation="am-slide-left" bs-aside="aside"><span class="glyphicon glyphicon-th-list"></span></a>
-				</div>
-				<ul class="nav navbar-nav">
-					<li><a href="#/">Home</a></li>
-					<li><a href="#/products">Products</a></li>
-					<li><a href="#/partners">Partners</a></li>
-					<li><a href="#/contact">Contact</a></li>
-					<li><a href="#/about">About</a></li>
-				</ul>
-			</nav>
-		</header>	
-	<div id="content" ng-view></div>		
-	<footer>
-		<small>
-			<p>Any similarity is pure coincidence!</p>
-			<p>Since Jun, 2015.</p>
-		</small>
-	</footer>	
-	</div>
-	
-	<!-- libs -->
-	<script type="text/javascript" src="./libs/jquery/dist/jquery.js"></script>
-	<script type="text/javascript" src="./libs/angular/angular.js"></script>
-	<script type="text/javascript" src="./libs/angular-route/angular-route.js"></script>
-	<script type="text/javascript" src="./libs/angular-animate/angular-animate.js"></script>
-	<script type="text/javascript" src="./libs/bootstrap/dist/js/bootstrap.js"></script>
-	<script type="text/javascript" src="./libs/angular-strap/dist/angular-strap.js"></script>
-	<script type="text/javascript" src="./libs/angular-strap/dist/angular-strap.tpl.js"></script>
-	
-	<!-- module -->
-	<script type="text/javascript" src="./scripts/app.module.js"></script>
-	
-	<!-- routes -->
-	<script type="text/javascript" src="./scripts/app.routes.js"></script>
-	
-	<!-- services -->
-	<script type="text/javascript" src="./scripts/services/productService.js"></script>
-	
-	<!-- controllers -->
-	<script type="text/javascript" src="./scripts/controllers/homeController.js"></script>
-	<script type="text/javascript" src="./scripts/controllers/asideController.js"></script>
-	<script type="text/javascript" src="./scripts/controllers/productController.js"></script>
-	<script type="text/javascript" src="./scripts/controllers/partnerController.js"></script>
-	<script type="text/javascript" src="./scripts/controllers/contactController.js"></script>
-	<script type="text/javascript" src="./scripts/controllers/aboutController.js"></script>	
-</body>
-</html>		
+	<head>
+		<link type="text/css" rel="stylesheet" href="./libs/bootstrap/dist/css/bootstrap.css">
+		<link type="text/css" rel="stylesheet" href="./libs/angular-motion/dist/angular-motion.css">
+		<link type="text/css" rel="stylesheet" href="./libs/bootstrap-additions/dist/bootstrap-additions.css">
+		<link type="text/css" rel="stylesheet" href="./libs/bootstrap/dist/css/bootstrap-theme.css">
+		<link type="text/css" rel="stylesheet" href="./css/master.css">
+		<title>FoolShop! - {{ title }}</title>
+	</head>
+	<body>
+		<div id="wrapper">
+			<header>
+				<span class="logo">FoolS</span>
+				<span class="logo sub">hop!</span>
+				<small>
+					<i>Where you can't buy a thing at all...</i>
+				</small>
+				<nav class="navbar navbar-default" role="navigation" bs-navbar>
+					<div class="navbar-header" ng-controller="AsideController">
+						<a class="navbar-brand" href="" data-placement="left" data-animation="am-slide-left" bs-aside="aside"><span class="glyphicon glyphicon-log-in"></span></a>
+					</div>
+					<ul class="nav navbar-nav">
+						<li>
+							<a href="#/">Home</a>
+						</li>
+						<li>
+							<a href="#/products">Products</a>
+						</li>
+						<li>
+							<a href="#/partners">Partners</a>
+						</li>
+						<li>
+							<a href="#/contact">Contact</a>
+						</li>
+						<li>
+							<a href="#/about">About</a>
+						</li>
+					</ul>
+				</nav>
+			</header>
+			<div id="content" class="container am-fade" ng-view></div>
+			<footer id="footer">
+				<small>
+					<p>Any similarity is pure coincidence!</p>
+					<p>Since Jun, 2015.</p>
+				</small>
+			</footer>
+		</div>
+		<!-- libs -->
+		<script type="text/javascript" src="./libs/jquery/dist/jquery.js"></script>
+		<script type="text/javascript" src="./libs/angular/angular.js"></script>
+		<script type="text/javascript" src="./libs/angular-route/angular-route.js"></script>
+		<script type="text/javascript" src="./libs/angular-animate/angular-animate.js"></script>
+		<script type="text/javascript" src="./libs/bootstrap/dist/js/bootstrap.js"></script>
+		<script type="text/javascript" src="./libs/angular-strap/dist/angular-strap.js"></script>
+		<script type="text/javascript" src="./libs/angular-strap/dist/angular-strap.tpl.js"></script>
+		<!-- module -->
+		<script type="text/javascript" src="./scripts/app.module.js"></script>
+		<!-- routes -->
+		<script type="text/javascript" src="./scripts/app.routes.js"></script>
+		<!-- services -->
+		<script type="text/javascript" src="./scripts/services/productService.js"></script>
+		<!-- controllers -->
+		<script type="text/javascript" src="./scripts/controllers/homeController.js"></script>
+		<script type="text/javascript" src="./scripts/controllers/asideController.js"></script>
+		<script type="text/javascript" src="./scripts/controllers/productController.js"></script>
+		<script type="text/javascript" src="./scripts/controllers/partnerController.js"></script>
+		<script type="text/javascript" src="./scripts/controllers/contactController.js"></script>
+		<script type="text/javascript" src="./scripts/controllers/aboutController.js"></script>
+	</body>
+
+</html>

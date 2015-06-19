@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-module.exports = function() {
+module.exports = function () {
 	var schema = mongoose.Schema({
 		id: { type: Number, unique: true },
 		name: { type: String, required: true },

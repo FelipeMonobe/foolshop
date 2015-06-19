@@ -1,4 +1,4 @@
-(function() {
-	angular	
-	.module('app', ['ngRoute', 'ngAnimate', 'mgcrea.ngStrap']);
+(function () {
+	angular
+		.module('app', ['ngRoute', 'ngAnimate', 'mgcrea.ngStrap']);
 })();

@@ -1,31 +1,34 @@
-<h1>products</h1>
-<button ng-click="vm.btn_AddProduct()" class="btn btn-primary" title="Add new products"><span class="glyphicon glyphicon-plus"></span></button>
+<div class="productContainerHeader" ng-dblclick="vm.btn_AddProduct()">
+	<label class="title">Products</label>
+	<img style="width:1095px" src="/img/123.jpg" />
+</div>
 <div>
-	<div class="productContainer" ng-repeat="item in vm.products">
-		<button ng-click="vm.btn_RemoveProduct(item.id)" class="btn btn-danger" title="Remove this product"><span class="glyphicon glyphicon-remove"></span></button>
+	<div class="productContainer am-flip-x" ng-repeat="item in vm.products">
+		<button ng-click="vm.btn_RemoveProduct(item.id)" type="button" class="close" aria-label="Close" title="Remove this product">
+			<span aria-hidden="true">&times;</span>
+		</button>
 		<div>
-			<label>Code:</label>
-			<label>{{item.id}}</label>
-		</div>	
+			<img ng-src="http://miravim.org/images/200x150.gif" alt="{{item.name}}" />
+		</div>
 		<div>
-			<label>Product:</label>
+			<span class="label label-default">PRODUCT</span>
 			<label>{{item.name}}</label>
-		</div>		
+		</div>
 		<div>
-			<label>Stock:</label>
+			<span class="label label-default">STOCK</span>
 			<label>{{item.stock}}</label>
-		</div>		
+		</div>
 		<div>
-			<label>Description:</label>
+			<span class="label label-default">DESCRIPTION</span>
 			<label>{{item.description}}</label>
-		</div>		
+		</div>
 		<div>
-			<label>Brand:</label>
+			<span class="label label-default">BRAND</span>
 			<label>{{item.brand}}</label>
-		</div>		
+		</div>
 		<div>
-			<label>Price:</label>
+			<span class="label label-default">PRICE</span>
 			<label>${{item.price}}</label>
 		</div>
-	</div>	
+	</div>
 </div>

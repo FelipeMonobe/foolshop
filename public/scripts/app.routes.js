@@ -1,37 +1,37 @@
-(function() {
+(function () {
 	angular
-	.module('app')
-	.config(configuracoes);
-	
+		.module('app')
+		.config(configuracoes);
+
 	configuracoes.$inject = ['$routeProvider'];
-	
+
 	function configuracoes($routeProvider) {
 		$routeProvider
-		.when('/', {
+			.when('/', {
 			templateUrl: 'views/home.html',
 			controllerAs: 'vm',
 			controller: 'HomeController'
 		})
-		.when('/products', {
+			.when('/products', {
 			templateUrl: 'views/products.html',
 			controllerAs: 'vm',
-			controller: 'ProductController'			
+			controller: 'ProductController'
 		})
-		.when('/partners', {
+			.when('/partners', {
 			templateUrl: 'views/partners.html',
 			controllerAs: 'vm',
-			controller: 'PartnerController'			
+			controller: 'PartnerController'
 		})
-		.when('/contact', {
+			.when('/contact', {
 			templateUrl: 'views/contact.html',
 			controllerAs: 'vm',
-			controller: 'ContactController'			
+			controller: 'ContactController'
 		})
-		.when('/about', {
+			.when('/about', {
 			templateUrl: 'views/about.html',
 			controllerAs: 'vm',
-			controller: 'AboutController'			
+			controller: 'AboutController'
 		})
-		.otherwise({ redirectTo: '/' });
-	}	
+			.otherwise({ redirectTo: '/' });
+	}
 })();

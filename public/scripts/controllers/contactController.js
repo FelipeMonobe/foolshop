@@ -1,9 +1,14 @@
-(function() {
+(function () {
 	angular
-	.module('app')
-	.controller('ContactController', contactController);
-		
-	function contactController() {
-		var vm = this;
-	}	
+		.module('app')
+		.controller('ContactController', contactController);
+
+	contactController.$inject = ['$rootScope'];
+
+	function contactController($rootScope) {
+		var vm = this,
+			shell = $rootScope;
+
+		shell.title = 'Contact';
+	}
 })();

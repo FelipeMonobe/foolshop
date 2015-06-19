@@ -20,7 +20,7 @@ header {
 	padding-bottom: 2.5em;
 }
 
-footer {
+#footer {
 	text-align: center;
 	background-color: rgba(0,0,0,0.1);
 	width: 100%;
@@ -30,7 +30,7 @@ footer {
 	left: 0;
 }
 
-footer p {
+#footer p {
 	position: relative;
 	bottom: 0;
 	margin: 0;
@@ -50,8 +50,22 @@ footer p {
 }
 .productContainer {
 	display: inline-block;
-	margin: 5px;
 	padding: 5px;
+	margin: 5px;
 	background-color: rgba(0,0,0,0.1);
-	max-width: 10%;
+	width: 18.5%;
+}
+.productContainerHeader {
+	display: inline-block;
+	margin: 0 0 0 5px;
+	background-color: rgba(0,0,0,0.1);
+	width: 96%;
+	position: relative;
+}
+.productContainerHeader .title {
+	bottom: 0;
+	right: 0.5em;
+	font-size: 4em;
+	position: absolute;
+	text-shadow: 2px 2px #263747;
 }
