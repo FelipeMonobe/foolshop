@@ -3,16 +3,19 @@
 		.module('app')
 		.controller('ProductController', productController);
 
-	productController.$inject = ['productService', '$location', '$alert', '$rootScope'];
+	productController.$inject = ['productService', '$location', '$rootScope', '$modal', '$scope'];
 
-	function productController(productService, $location, $alert, $rootScope) {
+	function productController(productService, $location, $rootScope, $modal, $scope) {
 		var vm = this,
 			shell = $rootScope;
 
 		shell.title = 'Products';
 
+		vm.teste = teste;
+		vm.teste2 = teste2;
 		vm.btn_AddProduct = addProduct;
 		vm.btn_RemoveProduct = removeProduct;
+		vm.saveProduct = saveProduct;
 		vm.products = [];
 		vm.fetchProduct = fetchProduct;
 
@@ -20,10 +23,20 @@
 			vm.fetchProduct();
 		})();
 
+		function teste() {
+			$modal({scope: $scope, template: 'views/modal.html'});
+		}
+		
+		function teste2() {
+			shell.alert('foi', true);
+		}
+
 		function addProduct() {
 			function generateRandomMock() {
 				var input = prompt('Product ID: '),
-					_id = (isNaN(input) || input <= 0) ? Math.floor(Math.random() * (100 - 1 + 1)) + 1 : parseInt(input);
+					_id = (isNaN(input) || input <= 0) ?
+						Math.floor(Math.random() * (100 - 1 + 1)) + 1 :
+						parseInt(input);
 
 				return {
 					id: _id,
@@ -44,12 +57,9 @@
 
 			return productService.addProduct(mock)
 				.then(function (response) {
-				if (response.data.success) {
+				if (response.data.success)
 					vm.products.push(response.data.product);
-					$alert({ content: response.data.message, title: 'Success!', placement: 'bottom-right', type: 'success', show: true, dismissable: false, duration: 2 });
-				}
-				else
-					$alert({ content: response.data.message, title: 'Failure!', placement: 'bottom-right', type: 'danger', show: true, dismissable: false, duration: 2 });
+				shell.alert(response.data.message, response.data.success);
 				return vm.products;
 			});
 		}
@@ -65,12 +75,9 @@
 		function removeAllProducts() {
 			return productService.removeAllProducts()
 				.then(function (response) {
-				if (response.data.success) {
+				if (response.data.success)
 					vm.products = [];
-					$alert({ content: response.data.message, title: 'Success!', placement: 'bottom-right', type: 'success', show: true, dismissable: false, duration: 2 });
-				}
-				else
-					$alert({ content: response.data.message, title: 'Failure!', placement: 'bottom-right', type: 'danger', show: true, dismissable: false, duration: 2 });
+				shell.alert(response.data.message, response.data.success);
 			});
 		}
 
@@ -79,7 +86,15 @@
 				if (currentValue.id === id)
 					vm.products.splice(index, 1);
 			});
-			return productService.removeProduct(id);
+			return productService.removeProduct(id)
+				.then(function (response) {
+				shell.alert(response.data.message, response.data.success);
+			});
+		}
+		
+		function saveProduct() {
+			debugger;			
+			return productService;
 		}
 	}
 })();

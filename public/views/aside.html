@@ -1,14 +1,15 @@
-<div class="aside" tabindex="-1" role="dialog">
-  <div class="aside-dialog">
-    <div class="aside-content">
-      <div class="aside-header" ng-show="title">
-        <button type="button" class="close" ng-click="$hide()">&times;</button>
-        <h4 class="aside-title" ng-bind="title"></h4>
-      </div>
-      <div class="aside-body" ng-bind="content"></div>
-      <div class="aside-footer">
-        <button type="button" class="btn btn-default" ng-click="$hide()">Close</button>
-      </div>
-    </div>
-  </div>
+<div class="aside bs-docs-aside" tabindex="-1" role="dialog">
+	<div class="aside-dialog">
+		<div class="aside-content">
+			<div class="aside-header" ng-show="title">
+				<button type="button" class="close" ng-click="$hide()">&times;</button>
+				<h4 class="aside-title">Hello, {{username}}!</h4>
+			</div>
+			<div class="aside-body bs-sidebar">
+				<div class="am-fade" ng-if="username != 'guest'" ng-include="'views/userbarOn.html'"></div>
+				<div class="am-fade" ng-if="username == 'guest'" ng-include="'views/userbarOff.html'"></div>
+			</div>
+			<div class="aside-footer"></div>
+		</div>
+	</div>
 </div>

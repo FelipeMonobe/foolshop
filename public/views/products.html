@@ -1,8 +1,11 @@
-<div class="productContainerHeader" ng-dblclick="vm.btn_AddProduct()">
+<div class="productContainerHeader" ng-click="vm.teste()" ng-dblclick="vm.btn_AddProduct()">
 	<label class="title">Products</label>
 	<img style="width:1095px" src="/img/123.jpg" />
 </div>
 <div>
+	<div ng-if="vm.products.length < 1">
+		<h3>There are no products available.</h3>
+	</div>
 	<div class="productContainer am-flip-x" ng-repeat="item in vm.products">
 		<button ng-click="vm.btn_RemoveProduct(item.id)" type="button" class="close" aria-label="Close" title="Remove this product">
 			<span aria-hidden="true">&times;</span>

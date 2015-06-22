@@ -37,6 +37,7 @@ module.exports = function (app) {
 			.remove({ 'id': _id })
 			.exec()
 			.then(function () {
+			res.json({ success: true, message: 'Product#' + _id + ' was successfully deleted.' });
 			res.end();
 		},
 			function (error) {

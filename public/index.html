@@ -17,8 +17,11 @@
 					<i>Where you can't buy a thing at all...</i>
 				</small>
 				<nav class="navbar navbar-default" role="navigation" bs-navbar>
-					<div class="navbar-header" ng-controller="AsideController">
-						<a class="navbar-brand" href="" data-placement="left" data-animation="am-slide-left" bs-aside="aside"><span class="glyphicon glyphicon-log-in"></span></a>
+					<div class="navbar-header">
+						<a class="navbar-brand" href="" data-template="views/aside.html" data-placement="left" data-animation="am-slide-left" bs-aside="aside"
+						data-container="body">
+						<span class="glyphicon glyphicon-log-in"></span>
+						</a>
 					</div>
 					<ul class="nav navbar-nav">
 						<li>
@@ -59,15 +62,16 @@
 		<script type="text/javascript" src="./scripts/app.module.js"></script>
 		<!-- routes -->
 		<script type="text/javascript" src="./scripts/app.routes.js"></script>
+		<!-- run -->
+		<script type="text/javascript" src="./scripts/app.run.js"></script>
 		<!-- services -->
 		<script type="text/javascript" src="./scripts/services/productService.js"></script>
 		<!-- controllers -->
+		<script type="text/javascript" src="./scripts/controllers/userbarController.js"></script>
 		<script type="text/javascript" src="./scripts/controllers/homeController.js"></script>
-		<script type="text/javascript" src="./scripts/controllers/asideController.js"></script>
 		<script type="text/javascript" src="./scripts/controllers/productController.js"></script>
 		<script type="text/javascript" src="./scripts/controllers/partnerController.js"></script>
 		<script type="text/javascript" src="./scripts/controllers/contactController.js"></script>
 		<script type="text/javascript" src="./scripts/controllers/aboutController.js"></script>
 	</body>
-
 </html>
