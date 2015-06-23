@@ -9,7 +9,7 @@ module.exports = function () {
 		brand: { type: String, default: 'Generic' },
 		price: { type: Number, required: true },
 		creationDate: { type: Date, default: Date.now },
-		isActive: { type: Boolean, required: true }
+		isActive: { type: Boolean, default: true }
 	});
 	return mongoose.model('Product', schema);
 };

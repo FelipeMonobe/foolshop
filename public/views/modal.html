@@ -5,8 +5,8 @@
         <button type="button" class="close" ng-click="$hide()">&times;</button>
         <h4 class="modal-title">New product</h4>
       </div>
-      <div class="modal-body">
-        <form name="productForm" novalidate ng-submit="vm.saveProduct()">
+      <form name="productForm" novalidate ng-submit="vm.saveProduct()">
+      <div class="modal-body">        
           <div class="form-group">
             <label>Name</label>
             <input class="form-control" ng-model="vm.productName" type="text" required />
@@ -34,7 +34,8 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" ng-click="$hide()">Close</button>
-        <button type="submit" class="btn btn-primary" ng-disabled="productForm.$pristine || (productForm.$invalid && productForm.$dirty)">Save</button>
+        <button type="submit" class="btn btn-primary" ng-click="$hide()" ng-disabled="productForm.$pristine || (productForm.$invalid && productForm.$dirty)">Save</button>
+        <button type="button" class="btn btn-warning" ng-click="vm.btn_AddProduct()">Randomize</button>
       </div>
       </form>
     </div>

@@ -11,32 +11,24 @@
 
 		shell.title = 'Products';
 
-		vm.teste = teste;
-		vm.teste2 = teste2;
 		vm.btn_AddProduct = addProduct;
+		vm.btn_OpenModal = openModal;
 		vm.btn_RemoveProduct = removeProduct;
-		vm.saveProduct = saveProduct;
-		vm.products = [];
 		vm.fetchProduct = fetchProduct;
+		vm.products = [];
+		vm.saveProduct = saveProduct;
 
 		(function init() {
 			vm.fetchProduct();
 		})();
 
-		function teste() {
-			$modal({scope: $scope, template: 'views/modal.html'});
-		}
-		
-		function teste2() {
-			shell.alert('foi', true);
+		function openModal() {
+			$modal({ scope: $scope, template: 'views/modal.html' });
 		}
 
 		function addProduct() {
 			function generateRandomMock() {
-				var input = prompt('Product ID: '),
-					_id = (isNaN(input) || input <= 0) ?
-						Math.floor(Math.random() * (100 - 1 + 1)) + 1 :
-						parseInt(input);
+				var _id = Math.floor(Math.random() * (100 - 1 + 1)) + 1;
 
 				return {
 					id: _id,
@@ -50,12 +42,7 @@
 				};
 			};
 
-			var mock = generateRandomMock();
-
-			if (mock.id === 666)
-				return removeAllProducts();
-
-			return productService.addProduct(mock)
+			return productService.addProduct(generateRandomMock())
 				.then(function (response) {
 				if (response.data.success)
 					vm.products.push(response.data.product);
@@ -91,10 +78,21 @@
 				shell.alert(response.data.message, response.data.success);
 			});
 		}
-		
+
 		function saveProduct() {
-			debugger;			
-			return productService;
+			var product = {
+				name: vm.productName,
+				stock: vm.productStock,
+				description: vm.productDescription,
+				brand: vm.productBrand,
+				price: vm.productPrice
+			};
+
+			return productService.addProduct(product)
+				.then(function (response) {
+				vm.products.push(product);
+				shell.alert(response.data.message, response.data.success);
+			});
 		}
 	}
 })();
