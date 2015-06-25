@@ -51,6 +51,13 @@
 			});
 		}
 
+		function clearFields(form) {
+			var inputs = Array.prototype.slice.call(form.getElementsByTagName('input'));
+			inputs.forEach(function (currentElement) {
+				currentElement.value = '';
+			});
+		}
+
 		function fetchProduct() {
 			return productService.getProduct()
 				.then(function (data) {
@@ -90,7 +97,10 @@
 
 			return productService.addProduct(product)
 				.then(function (response) {
-				vm.products.push(product);
+				if (response.data.success) {
+					vm.products.push(product);
+					clearFields(document.getElementsByName('productForm')[0]);
+				}
 				shell.alert(response.data.message, response.data.success);
 			});
 		}
