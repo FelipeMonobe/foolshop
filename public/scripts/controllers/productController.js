@@ -15,12 +15,12 @@
 		vm.btn_AddProduct = addProduct;
 		vm.btn_OpenModal = openModal;
 		vm.btn_RemoveProduct = removeProduct;
-		vm.fetchProduct = fetchProduct;
-		vm.products = [];
-		vm.saveProduct = saveProduct;
+		vm.form_SaveProduct = saveProduct;
+		vm.load_FetchProduct = fetchProduct;
+		vm.load_products = [];		
 
 		(function init() {
-			vm.fetchProduct();
+			vm.load_FetchProduct();
 		})();
 
 		function openModal() {
