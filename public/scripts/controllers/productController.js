@@ -7,7 +7,8 @@
 
 	function productController(productService, $location, $rootScope, $modal, $scope) {
 		var vm = this,
-			shell = $rootScope;
+			shell = $rootScope,
+			modal = $modal({ scope: $scope, template: 'views/modal.html', show: false });
 
 		shell.title = 'Products';
 
@@ -23,7 +24,7 @@
 		})();
 
 		function openModal() {
-			$modal({ scope: $scope, template: 'views/modal.html' });
+			modal.show();
 		}
 
 		function addProduct() {
@@ -98,6 +99,7 @@
 			return productService.addProduct(product)
 				.then(function (response) {
 				if (response.data.success) {
+					modal.hide();
 					vm.products.push(product);
 					clearFields(document.getElementsByName('productForm')[0]);
 				}
