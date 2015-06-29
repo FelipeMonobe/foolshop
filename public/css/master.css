@@ -12,7 +12,7 @@ html, body {
 
 header {
 	background:#ededed;
-	background-color: rgba(0,0,0,0.1); 
+	background-color: rgba(0,0,0,0.1);
 }
 
 
@@ -68,4 +68,10 @@ header {
 	font-size: 4em;
 	position: absolute;
 	text-shadow: 2px 2px #263747;
+}
+.green {
+	color: rgb(168,216,107);
+}
+.red {
+	color: red;
 }

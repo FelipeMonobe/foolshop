@@ -9,7 +9,4 @@ module.exports = function (app) {
 
 	app.route('/api/removeProduct/:id')
 		.delete(controller.removeProduct);
-
-	app.route('/api/removeAllProducts')
-		.delete(controller.removeAllProducts);
 };

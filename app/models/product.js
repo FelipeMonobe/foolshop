@@ -1,8 +1,8 @@
-var mongoose = require('mongoose');
+var mongoose = require('mongoose'),
+		autoIncrement = require('mongoose-auto-increment');
 
 module.exports = function () {
 	var schema = mongoose.Schema({
-		id: { type: Number, unique: true },
 		name: { type: String, required: true },
 		stock: { type: Number, default: 0 },
 		description: { type: String, default: 'No description given.' },
@@ -11,5 +11,6 @@ module.exports = function () {
 		creationDate: { type: Date, default: Date.now },
 		isActive: { type: Boolean, default: true }
 	});
+	schema.plugin(autoIncrement.plugin, 'Product');
 	return mongoose.model('Product', schema);
 };

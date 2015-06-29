@@ -6,14 +6,16 @@
         <h4 class="modal-title">New product</h4>
       </div>
       <form name="productForm" novalidate ng-submit="vm.form_SaveProduct()">
-      <div class="modal-body">        
+      <div class="modal-body">
           <div class="form-group">
-            <label>Name</label>
-            <input class="form-control" ng-model="vm.productName" type="text" required />
+            <label>Name*</label>
+            <input class="form-control" name="productName" ng-model="vm.productName" type="text" required />
+            <label ng-show="productForm.productName.$dirty && productForm.productName.$error.required">Name field required.</label>
           </div>
           <div class="form-group">
-            <label>Initial stock</label>
-            <input class="form-control" ng-model="vm.productStock" ng-pattern="/\d+/" min="1" type="number" />
+            <label>Initial stock*</label>
+            <input class="form-control" name="productStock" ng-model="vm.productStock" ng-pattern="/\d+/" min="0" type="number" required />
+            <label ng-show="productForm.productStock.$dirty && productForm.productStock.$invalid">Initial stock field must be 0 (zero) or greater.</label>
           </div>
           <div class="form-group">
             <label>Description</label>
@@ -24,13 +26,15 @@
             <input class="form-control" ng-model="vm.productBrand" type="text" />
           </div>
           <div class="form-group">
-            <label>Price</label>
-            <input class="form-control" ng-model="vm.productPrice" type="number" min="0.01" step="0.01" required />
+            <label>Price*</label>
+            <input class="form-control" name="productPrice" ng-model="vm.productPrice" type="text" ng-pattern="/\d{1,}\.\d{2}/" required />
+            <label ng-show="productForm.productPrice.$dirty && productForm.productPrice.$invalid">Price field must always have at least 3 digits, with only 2 decimal digits.</label>
           </div>
           <div class="form-group">
             <label>Image</label>
             <input class="form-control" type="file" />
           </div>
+          <p>* - required fields.</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" ng-click="$hide()">Close</button>

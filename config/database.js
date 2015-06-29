@@ -1,8 +1,10 @@
-var mongoose = require('mongoose');
+var mongoose = require('mongoose'),
+		autoIncrement = require('mongoose-auto-increment');
 
 module.exports = function (uri) {
 	mongoose.set('debug', true);
-	mongoose.connect(uri, { server: { poolSize: 15 } });
+
+	autoIncrement.initialize(mongoose.connect(uri, { server: { poolSize: 15 } }));
 
 	mongoose.connection.on('connected', function () {
 		console.log('Mongoose connected at ' + uri);

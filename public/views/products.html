@@ -7,7 +7,7 @@
 		<h3>There are no products available.</h3>
 	</div>
 	<div class="productContainer am-flip-x" ng-repeat="item in vm.products">
-		<button ng-click="vm.btn_RemoveProduct(item.id)" type="button" class="close" aria-label="Close" title="Remove this product">
+		<button ng-if="username != 'guest'" ng-click="vm.btn_RemoveProduct(item._id)" type="button" class="close" aria-label="Close" title="Remove this product">
 			<span aria-hidden="true">&times;</span>
 		</button>
 		<div>
@@ -15,7 +15,8 @@
 		</div>
 		<div>
 			<span class="label label-default">PRODUCT</span>
-			<label>{{item.name}}</label>
+			<label ng-if="item.name.length > 15">{{item.name.substring(0,15) + '...'}}</label>
+			<label ng-if="item.name.length <= 15">{{item.name}}</label>
 		</div>
 		<div>
 			<span class="label label-default">STOCK</span>
@@ -23,11 +24,13 @@
 		</div>
 		<div>
 			<span class="label label-default">DESCRIPTION</span>
-			<label>{{item.description}}</label>
+			<label ng-if="item.description.length > 13">{{item.description.substring(0,13) + '...'}}</label>
+			<label ng-if="item.description.length <= 13">{{item.description}}</label>
 		</div>
 		<div>
 			<span class="label label-default">BRAND</span>
-			<label>{{item.brand}}</label>
+			<label ng-if="item.brand.length > 17">{{item.brand.substring(0,17) + '...'}}</label>
+			<label ng-if="item.brand.length <= 17">{{item.brand}}</label>
 		</div>
 		<div>
 			<span class="label label-default">PRICE</span>

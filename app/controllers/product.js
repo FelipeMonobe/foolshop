@@ -34,27 +34,12 @@ module.exports = function (app) {
 		var _id = sanitize(req.params.id);
 
 		Product
-			.remove({ 'id': _id })
-			.exec()
-			.then(function () {
-			res.json({ success: true, message: 'Product#' + _id + ' was successfully deleted.' });
+		.findByIdAndUpdate(_id, {$set: {isActive: false}}, function(error) {
+			if(error)
+				return console.error(error);
+			res.json({ success: true, message: 'Product#' + _id +' was successfully deleted.' });
 			res.end();
-		},
-			function (error) {
-				return console.error(error);
-			});
-	};
-
-	controller.removeAllProducts = function (req, res) {
-		Product
-			.remove()
-			.exec()
-			.then(function () {
-			res.json({ success: true, message: 'All products were successfully deleted.' });
-		},
-			function (error) {
-				return console.error(error);
-			});
+		});
 	};
 
 	return controller;
