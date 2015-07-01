@@ -1,14 +1,14 @@
-(function () {
-	angular
-		.module('app')
-		.controller('AboutController', aboutController);
+(function() {
+  angular
+    .module('app')
+    .controller('AboutController', aboutController);
 
-	aboutController.$inject = ['$rootScope'];
+  aboutController.$inject = ['$rootScope'];
 
-	function aboutController($rootScope) {
-		var vm = this,
-			shell = $rootScope;
+  function aboutController($rootScope) {
+    var vm = this,
+      shell = $rootScope;
 
-		shell.title = 'About';
-	}
+    shell.title = 'About';
+  }
 })();
