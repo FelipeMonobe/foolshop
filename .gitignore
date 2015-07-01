@@ -4,4 +4,4 @@ node_modules/
 gulpfile.js
 public/libs/**
 readme.md
-!bootstrap-theme.css
+!public/libs/bootstrap/dist/bootstrap-theme.css
