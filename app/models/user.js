@@ -5,19 +5,25 @@ module.exports = function() {
   var schema = mongoose.Schema({
     username: {
       type: String,
-      required: true
+      required: true,
+      trim: true,
+      minlength: 6
     },
     email: {
       type: String,
-      required: true
+      required: true,
+      lowercase: true,
+      trim: true,
+      match: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/
     },
     password: {
       type: String,
-      required: true
+      required: true,
+      minlength: 6
     },
-    role: {
-      type: String,
-      required: true
+    roleId: {
+      type: Number,
+      default: 1
     },
     lastLoginDate: {
       type: Date,
@@ -32,6 +38,9 @@ module.exports = function() {
       default: true
     }
   });
-  schema.plugin(autoIncrement.plugin, 'User');
+  schema.plugin(autoIncrement.plugin, {
+    model: 'User',
+    startAt: 1
+  });
   return mongoose.model('User', schema);
 };

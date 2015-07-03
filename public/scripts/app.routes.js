@@ -12,25 +12,30 @@
         controllerAs: 'vm',
         controller: 'HomeController'
       })
-      .when('/products', {
-        templateUrl: 'views/products.html',
+      .when('/about', {
+        templateUrl: 'views/about.html',
         controllerAs: 'vm',
-        controller: 'ProductController'
-      })
-      .when('/partners', {
-        templateUrl: 'views/partners.html',
-        controllerAs: 'vm',
-        controller: 'PartnerController'
+        controller: 'AboutController'
       })
       .when('/contact', {
         templateUrl: 'views/contact.html',
         controllerAs: 'vm',
         controller: 'ContactController'
       })
-      .when('/about', {
-        templateUrl: 'views/about.html',
+      .when('/partners', {
+        templateUrl: 'views/partners.html',
         controllerAs: 'vm',
-        controller: 'AboutController'
+        controller: 'PartnerController'
+      })
+      .when('/products', {
+        templateUrl: 'views/products.html',
+        controllerAs: 'vm',
+        controller: 'ProductController'
+      })
+      .when('/user/signup', {
+        templateUrl: 'views/signUp.html',
+        controllerAs: 'vm',
+        controller: 'SignUpController'
       })
       .otherwise({
         redirectTo: '/'

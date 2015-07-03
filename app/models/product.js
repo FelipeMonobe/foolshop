@@ -32,6 +32,9 @@ module.exports = function() {
       default: true
     }
   });
-  schema.plugin(autoIncrement.plugin, 'Product');
+  schema.plugin(autoIncrement.plugin, {
+    model: 'Product',
+    startAt: 1
+  });
   return mongoose.model('Product', schema);
 };

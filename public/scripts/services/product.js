@@ -9,12 +9,11 @@
     return {
       getProduct: getProduct,
       addProduct: addProduct,
-      removeAllProducts: removeAllProducts,
       removeProduct: removeProduct
     };
 
     function addProduct(model) {
-      return $http.post('/api/addProduct', model)
+      return $http.post('/api/product/add', model)
         .catch(addProductError);
 
       function addProductError(error) {
@@ -23,7 +22,7 @@
     }
 
     function getProduct() {
-      return $http.get('/api/getProduct')
+      return $http.get('/api/product/get')
         .then(getProductSuccess)
         .catch(getProductError);
 
@@ -36,17 +35,8 @@
       }
     }
 
-    function removeAllProducts() {
-      return $http.delete('/api/removeAllProducts')
-        .catch(removeAllProductsError);
-
-      function removeAllProductsError(error) {
-        console.log('XHR failed for removeAllProducts. ' + error.data.message);
-      }
-    }
-
     function removeProduct(id) {
-      return $http.delete('/api/removeProduct/' + id)
+      return $http.delete('/api/product/remove/' + id)
         .catch(removeProductError);
 
       function removeProductError(error) {

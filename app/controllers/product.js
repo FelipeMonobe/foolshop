@@ -10,36 +10,45 @@ module.exports = function(app) {
         isActive: true
       })
       .exec()
-      .then(function(products) {
-        res.json(products);
-      }, function(error) {
-        console.log(error);
-        res.status(500).json(error);
-      });
+      .then(getProductSuccess,
+        getProductError);
+
+    function getProductSuccess(products) {
+      res.json(products);
+    }
+
+    function getProductError(error) {
+      console.log(error);
+      res.status(500).json(error);
+    }
   };
 
   controller.addProduct = function(req, res) {
     Product
       .create(req.body)
-      .then(function(product) {
-          res.status(201).json({
-            success: true,
-            message: 'Product successfully added.',
-            product: product
-          });
-        },
-        function(error) {
-          console.log(error);
-          if (error.code === 11000)
-            res.json({
-              success: false,
-              message: 'This product already exists.'
-            });
-          res.json({
-            success: false,
-            message: 'Product could not be added.'
-          });
+      .then(addProductSuccess,
+        addProductError);
+
+    function addProductSuccess(product) {
+      res.status(201).json({
+        success: true,
+        message: 'Product successfully added.',
+        product: product
+      });
+    }
+
+    function addProductError(error) {
+      console.log(error);
+      if (error.code === 11000)
+        res.json({
+          success: false,
+          message: 'This product already exists.'
         });
+      res.json({
+        success: false,
+        message: 'Product could not be added.'
+      });
+    }
   };
 
   controller.removeProduct = function(req, res) {
@@ -50,15 +59,17 @@ module.exports = function(app) {
         $set: {
           isActive: false
         }
-      }, function(error) {
-        if (error)
-          return console.error(error);
-        res.json({
-          success: true,
-          message: 'Product#' + _id + ' was successfully deleted.'
-        });
-        res.end();
+      }, removeProductError);
+
+    function removeProductError(error) {
+      if (error)
+        return console.error(error);
+      res.json({
+        success: true,
+        message: 'Product#' + _id + ' was successfully deleted.'
       });
+      res.end();
+    }
   };
 
   return controller;
