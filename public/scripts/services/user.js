@@ -7,8 +7,10 @@
 
   function userService($http) {
     return {
-      getUser: getUser,
       addUser: addUser,
+      getUser: getUser,
+      getUserByEmail: getUserByEmail,
+      getUserByUsername: getUserByUsername,
       removeUser: removeUser
     };
 
@@ -32,6 +34,24 @@
 
       function getUserError(error) {
         console.log('XHR failed for getUser. ' + error.data.message);
+      }
+    }
+
+    function getUserByEmail(model) {
+      return $http.post('api/user/getByEmail', model)
+        .catch(getUserByEmailError);
+
+      function getUserByEmailError(error) {
+        console.log('XHR failed for getUserByEmail. ' + error.data.message);
+      }
+    }
+
+    function getUserByUsername(model) {
+      return $http.post('api/user/getByUsername', model)
+        .catch(getUserByUsernameError);
+
+      function getUserByUsernameError(error) {
+        console.log('XHR failed for getUserByUsername. ' + error.data.message);
       }
     }
 

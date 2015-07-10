@@ -4,6 +4,34 @@ module.exports = function(app) {
   var Product = app.models.product,
     controller = {};
 
+    controller.addProduct = function(req, res) {
+      Product
+        .create(req.body)
+        .then(addProductSuccess,
+          addProductError);
+
+      function addProductSuccess(product) {
+        res.status(201).json({
+          success: true,
+          message: 'Product successfully added.',
+          product: product
+        });
+      }
+
+      function addProductError(error) {
+        console.log(error);
+        if (error.code === 11000)
+          res.json({
+            success: false,
+            message: 'This product already exists.'
+          });
+        res.json({
+          success: false,
+          message: 'Product could not be added.'
+        });
+      }
+    };
+
   controller.getProduct = function(req, res) {
     Product
       .find({
@@ -20,34 +48,6 @@ module.exports = function(app) {
     function getProductError(error) {
       console.log(error);
       res.status(500).json(error);
-    }
-  };
-
-  controller.addProduct = function(req, res) {
-    Product
-      .create(req.body)
-      .then(addProductSuccess,
-        addProductError);
-
-    function addProductSuccess(product) {
-      res.status(201).json({
-        success: true,
-        message: 'Product successfully added.',
-        product: product
-      });
-    }
-
-    function addProductError(error) {
-      console.log(error);
-      if (error.code === 11000)
-        res.json({
-          success: false,
-          message: 'This product already exists.'
-        });
-      res.json({
-        success: false,
-        message: 'Product could not be added.'
-      });
     }
   };
 

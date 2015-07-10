@@ -5,12 +5,14 @@ module.exports = function() {
   var schema = mongoose.Schema({
     username: {
       type: String,
+      unique: true,
       required: true,
       trim: true,
       minlength: 6
     },
     email: {
       type: String,
+      unique: true,
       required: true,
       lowercase: true,
       trim: true,

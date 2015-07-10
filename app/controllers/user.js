@@ -4,25 +4,6 @@ module.exports = function(app) {
   var User = app.models.user,
     controller = {};
 
-  controller.getUser = function(req, res) {
-    User
-      .find({
-        isActive: true
-      })
-      .exec()
-      .then(getUserSuccess,
-        getUserError);
-
-    function getUserSuccess(users) {
-      res.json(users);
-    }
-
-    function getUserError(error) {
-      console.log(error);
-      res.status(500).json(error);
-    }
-  };
-
   controller.addUser = function(req, res) {
     User
       .create(req.body)
@@ -50,6 +31,79 @@ module.exports = function(app) {
       });
     }
   };
+
+  controller.getUser = function(req, res) {
+    User
+      .find({
+        isActive: true
+      })
+      .exec()
+      .then(getUserSuccess,
+        getUserError);
+
+    function getUserSuccess(users) {
+      res.json(users);
+    }
+
+    function getUserError(error) {
+      console.log(error);
+      res.status(500).json(error);
+    }
+  };
+
+  controller.getUserByEmail = function(req, res) {
+    User
+      .find({
+        email: req.params.email
+      })
+      .exec()
+      .then(getUserByEmailSuccess,
+        getUserByEmailError);
+
+    function getUserByEmailSuccess(user) {
+      if (user != null)
+        return user;
+      else
+        return res.json({
+          success: false,
+          message: 'Chosen email is already being used.'
+        });
+    }
+
+    function getUserByEmailError(error) {
+      return res.json({
+        success: false,
+        message: 'Could not check e-mail.'
+      })
+    }
+  }
+
+  controller.getUserByUsername = function(req, res) {
+    User
+      .find({
+        username: req.params.username
+      })
+      .exec()
+      .then(getUserByUsernameSuccess,
+        getUserByUsernameError);
+
+    function getUserByUsernameSuccess(user) {
+      if (user != null)
+        return user;
+      else
+        return res.json({
+          success: false,
+          message: 'Chosen username is already being used.'
+        });
+    }
+
+    function getUserByUsernameError(error) {
+      return res.json({
+        success: false,
+        message: 'Could not check username.'
+      })
+    }
+  }
 
   controller.removeUser = function(req, res) {
     var _id = sanitize(req.params.id);
