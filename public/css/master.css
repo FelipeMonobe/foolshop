@@ -69,3 +69,6 @@ header {
 .red {
   color: red;
 }
+.invalidTxt {
+  border: 2px solid red !important;
+}

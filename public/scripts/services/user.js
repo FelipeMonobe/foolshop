@@ -37,8 +37,8 @@
       }
     }
 
-    function getUserByEmail(model) {
-      return $http.post('api/user/getByEmail', model)
+    function getUserByEmail(email) {
+      return $http.get('/api/user/getUserByEmail', {params: {email: email}})
         .catch(getUserByEmailError);
 
       function getUserByEmailError(error) {
@@ -47,7 +47,7 @@
     }
 
     function getUserByUsername(model) {
-      return $http.post('api/user/getByUsername', model)
+      return $http.post('/api/user/getUserByUsername', model)
         .catch(getUserByUsernameError);
 
       function getUserByUsernameError(error) {

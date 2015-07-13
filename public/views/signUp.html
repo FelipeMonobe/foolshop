@@ -8,9 +8,10 @@
   </div>
   <div class="form-group">
     <label>E-mail*</label>
-    <input class="form-control" name="email" ng-model="vm.email" ng-trim="true" ng-blur="vm.form_checkEmail()" ng-pattern="/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/" type="text" required />
+    <input class="form-control" name="email" ng-model="vm.email" ng-class="{invalidTxt: vm.form_InvalidEmail}" ng-trim="true" ng-blur="vm.form_CheckEmail(userForm)" ng-pattern="/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/" type="text" required />
     <label ng-show="userForm.email.$dirty && userForm.email.$error.required">E-mail field required.</label>
     <label ng-show="userForm.email.$error.pattern">Invalid e-mail format.</label>
+    <label class="red" ng-show="vm.form_InvalidEmail">This e-mail is already being used.</label>
   </div>
   <div class="form-group">
     <label>Password*</label>
@@ -19,5 +20,5 @@
     <label ng-show="userForm.password.$dirty && userForm.password.$error.required">Password field required.</label>
   </div>
   <p>* Required fields.</p>
-  <button type="submit" class="btn btn-primary" ng-disabled="userForm.$pristine || (userForm.$invalid && userForm.$dirty)">Save</button>
+  <button type="submit" class="btn btn-primary" ng-disabled="userForm.$pristine || (userForm.$invalid && userForm.$dirty) || vm.form_InvalidEmail">Save</button>
 </form>

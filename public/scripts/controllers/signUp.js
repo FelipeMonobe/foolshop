@@ -11,23 +11,23 @@
 
     shell.title = 'Sign Up';
 
+    vm.form_InvalidEmail = false;
     vm.form_SaveUser = saveUser;
-    vm.form_checkEmail = checkEmail;
-    vm.form_checkUsername = checkUsername;
+    vm.form_CheckEmail = checkEmail;
+    vm.form_CheckUsername = checkUsername;
 
-    function checkEmail() {
-      var email = {
-        email: vm.email
-      };
-
-      return userService.getUserByEmail(email)
+    function checkEmail(form) {
+      if(!form.email.$error.pattern) {
+      return userService.getUserByEmail(vm.email)
         .then(getUserByEmailSuccess);
 
       function getUserByEmailSuccess(response) {
-        if (response.data.success) {
-          shell.alert(response.data.message, response.data.success);
-        }
+        if(response.data.user)
+        return vm.form_InvalidEmail = true;
+        return vm.form_InvalidEmail = false;          
       }
+      }
+      return vm.form_InvalidEmail = false;
     }
 
     function checkUsername() {

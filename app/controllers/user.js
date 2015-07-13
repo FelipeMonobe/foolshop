@@ -54,20 +54,26 @@ module.exports = function(app) {
   controller.getUserByEmail = function(req, res) {
     User
       .find({
-        email: req.params.email
+        email: req.query.email
       })
       .exec()
       .then(getUserByEmailSuccess,
         getUserByEmailError);
 
-    function getUserByEmailSuccess(user) {
-      if (user != null)
-        return user;
-      else
+    function getUserByEmailSuccess(users) {
+      if (users.length > 0)
+        return res.json({success: true,
+          message: 'User successfully retrieved.',
+          user: users[0]
+          });
+      else if (users.length == 0)
         return res.json({
-          success: false,
-          message: 'Chosen email is already being used.'
-        });
+          success: true,
+          message: 'There is no user under this e-mail.'
+        })
+        else 
+        return res.json({success: false,
+          message: 'Could not check user.'});
     }
 
     function getUserByEmailError(error) {

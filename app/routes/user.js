@@ -7,10 +7,10 @@ module.exports = function(app) {
   app.route('/api/user/get')
     .get(controller.getUser);
 
-  app.route('api/user/getByEmail')
-    .post(controller.getUserByEmail);
+  app.route('/api/user/getUserByEmail')
+    .get(controller.getUserByEmail);
 
-  app.route('api/user/getByUsername')
+  app.route('/api/user/getUserByUsername')
     .post(controller.getUserByUsername);
 
   app.route('/api/user/remove/:id')
