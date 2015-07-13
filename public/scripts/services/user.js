@@ -38,7 +38,11 @@
     }
 
     function getUserByEmail(email) {
-      return $http.get('/api/user/getUserByEmail', {params: {email: email}})
+      return $http.get('/api/user/getUserByEmail', {
+          params: {
+            email: email
+          }
+        })
         .catch(getUserByEmailError);
 
       function getUserByEmailError(error) {

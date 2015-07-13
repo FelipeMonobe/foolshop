@@ -62,18 +62,21 @@ module.exports = function(app) {
 
     function getUserByEmailSuccess(users) {
       if (users.length > 0)
-        return res.json({success: true,
+        return res.json({
+          success: true,
           message: 'User successfully retrieved.',
           user: users[0]
-          });
+        });
       else if (users.length == 0)
         return res.json({
           success: true,
           message: 'There is no user under this e-mail.'
         })
-        else 
-        return res.json({success: false,
-          message: 'Could not check user.'});
+      else
+        return res.json({
+          success: false,
+          message: 'Could not check user.'
+        });
     }
 
     function getUserByEmailError(error) {

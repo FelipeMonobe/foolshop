@@ -17,15 +17,15 @@
     vm.form_CheckUsername = checkUsername;
 
     function checkEmail(form) {
-      if(!form.email.$error.pattern) {
-      return userService.getUserByEmail(vm.email)
-        .then(getUserByEmailSuccess);
+      if (!form.email.$error.pattern) {
+        return userService.getUserByEmail(vm.email)
+          .then(getUserByEmailSuccess);
 
-      function getUserByEmailSuccess(response) {
-        if(response.data.user)
-        return vm.form_InvalidEmail = true;
-        return vm.form_InvalidEmail = false;          
-      }
+        function getUserByEmailSuccess(response) {
+          if (response.data.user)
+            return vm.form_InvalidEmail = true;
+          return vm.form_InvalidEmail = false;
+        }
       }
       return vm.form_InvalidEmail = false;
     }
