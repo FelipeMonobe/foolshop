@@ -1,11 +1,13 @@
 var express = require('express'),
   bodyParser = require('body-parser'),
-  load = require('express-load');
+  load = require('express-load'),
+  cookieParser = require('cookie-parser'),
+  session = require('express-session');
 
 module.exports = function() {
   var app = express();
 
-  //ambient configs
+  //environment configs
   app.set('views', './app/views');
   app.set('view engine', 'ejs');
 
@@ -15,6 +17,8 @@ module.exports = function() {
   }));
   app.use(bodyParser.json());
   app.use(express.static('./public'));
+  app.use(cookieParser());
+  app.use(session({secret: 'hRlsmN62D7aB3'}));
 
   load('models', {
       cwd: 'app'

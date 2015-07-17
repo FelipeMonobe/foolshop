@@ -7,29 +7,25 @@ module.exports = function(app) {
   controller.addUser = function(req, res) {
     User
       .create(req.body)
-      .then(addUserSuccess,
-        addUserError);
-
-    function addUserSuccess(user) {
-      res.status(201).json({
-        success: true,
-        message: 'You were successfully added.',
-        user: user
-      });
-    }
-
-    function addUserError(error) {
-      console.log(error);
-      if (error.code === 11000)
-        res.json({
-          success: false,
-          message: 'This user already exists.'
+      .then(function(user) {
+          res.status(201).json({
+            success: true,
+            message: 'You were successfully added.',
+            user: user
+          });
+        },
+        function(error) {
+          console.log(error);
+          if (error.code === 11000)
+            res.json({
+              success: false,
+              message: 'This user already exists.'
+            });
+          res.json({
+            success: false,
+            message: 'User could not be added.'
+          });
         });
-      res.json({
-        success: false,
-        message: 'User could not be added.'
-      });
-    }
   };
 
   controller.getUser = function(req, res) {
@@ -38,17 +34,13 @@ module.exports = function(app) {
         isActive: true
       })
       .exec()
-      .then(getUserSuccess,
-        getUserError);
-
-    function getUserSuccess(users) {
-      res.json(users);
-    }
-
-    function getUserError(error) {
-      console.log(error);
-      res.status(500).json(error);
-    }
+      .then(function(users) {
+          res.json(users);
+        },
+        function(error) {
+          console.log(error);
+          res.status(500).json(error);
+        });
   };
 
   controller.getUserByEmail = function(req, res) {
@@ -57,62 +49,91 @@ module.exports = function(app) {
         email: req.query.email
       })
       .exec()
-      .then(getUserByEmailSuccess,
-        getUserByEmailError);
-
-    function getUserByEmailSuccess(users) {
-      if (users.length > 0)
-        return res.json({
-          success: true,
-          message: 'User successfully retrieved.',
-          user: users[0]
+      .then(function(users) {
+          if (users.length > 0)
+            return res.json({
+              success: true,
+              message: 'User successfully retrieved.',
+              user: users[0]
+            });
+          else if (!!users.length)
+            return res.json({
+              success: true,
+              message: 'There is no user under this e-mail.'
+            });
+          else
+            return res.json({
+              success: false,
+              message: 'Could not check user.'
+            });
+        },
+        function(error) {
+          return res.json({
+            success: false,
+            message: 'Could not check e-mail.'
+          });
         });
-      else if (users.length == 0)
-        return res.json({
-          success: true,
-          message: 'There is no user under this e-mail.'
-        })
-      else
-        return res.json({
-          success: false,
-          message: 'Could not check user.'
-        });
-    }
-
-    function getUserByEmailError(error) {
-      return res.json({
-        success: false,
-        message: 'Could not check e-mail.'
-      })
-    }
-  }
+  };
 
   controller.getUserByUsername = function(req, res) {
     User
       .find({
-        username: req.params.username
+        username: req.query.username
       })
       .exec()
-      .then(getUserByUsernameSuccess,
-        getUserByUsernameError);
+      .then(function(users) {
+          if (users.length > 0)
+            return res.json({
+              success: true,
+              message: 'User successfully retrieved.',
+              user: users[0]
+            });
+          else if (!!users.length)
+            return res.json({
+              success: true,
+              message: 'There is no user under this username.'
+            });
+          else
+            return res.json({
+              success: false,
+              message: 'Could not check user.'
+            });
+        },
+        function(error) {
+          return res.json({
+            success: false,
+            message: 'Could not check username.'
+          });
+        });
+  };
 
-    function getUserByUsernameSuccess(user) {
-      if (user != null)
-        return user;
-      else
+  controller.login = function(req, res) {
+    User
+      .find({
+        username: req.query.username,
+        password: req.query.password
+      })
+      .exec()
+      .then(function(users) {
+        if (users.length) {
+
+          req.session.userData = users[0];
+
+          console.log('Session data:');
+          console.log(req.session.userData);
+
+          return res.json({
+            success: true,
+            message: 'Successful login.',
+            user: users[0]
+          });
+        }
         return res.json({
           success: false,
-          message: 'Chosen username is already being used.'
+          message: 'Invalid user credentials.'
         });
-    }
-
-    function getUserByUsernameError(error) {
-      return res.json({
-        success: false,
-        message: 'Could not check username.'
-      })
-    }
-  }
+      });
+  };
 
   controller.removeUser = function(req, res) {
     var _id = sanitize(req.params.id);
@@ -122,17 +143,15 @@ module.exports = function(app) {
         $set: {
           isActive: false
         }
-      }, removeUserError);
-
-    function removeUserError(error) {
-      if (error)
-        return console.error(error);
-      res.json({
-        success: true,
-        message: 'User was successfully deleted.'
+      }, function(error) {
+        if (error)
+          return console.error(error);
+        res.json({
+          success: true,
+          message: 'User was successfully deleted.'
+        });
+        res.end();
       });
-      res.end();
-    }
   };
 
   return controller;

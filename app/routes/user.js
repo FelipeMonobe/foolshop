@@ -11,7 +11,10 @@ module.exports = function(app) {
     .get(controller.getUserByEmail);
 
   app.route('/api/user/getUserByUsername')
-    .post(controller.getUserByUsername);
+    .get(controller.getUserByUsername);
+
+    app.route('/api/user/login')
+      .get(controller.login);
 
   app.route('/api/user/remove/:id')
     .delete(controller.removeUser);

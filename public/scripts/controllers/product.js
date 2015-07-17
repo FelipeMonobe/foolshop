@@ -45,7 +45,7 @@
           creationDate: undefined,
           isActive: true
         };
-      };
+      }
 
       return productService.addProduct(generateRandomMock())
         .then(function(response) {

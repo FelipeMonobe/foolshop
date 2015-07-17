@@ -3,9 +3,9 @@
     .module('app')
     .controller('userbarController', userbarController);
 
-  userbarController.$inject = ['$scope', '$rootScope'];
+  userbarController.$inject = ['$scope', '$rootScope', 'userService'];
 
-  function userbarController($scope, $rootScope) {
+  function userbarController($scope, $rootScope, userService) {
     var vm = this,
       shell = $rootScope;
 
@@ -14,17 +14,20 @@
     vm.btn_resetPassword = resetPassword;
 
     function signIn() {
-      if (vm.username == 'xinube' && vm.password == '123')
-        return shell.username = vm.username;
-      return shell.alert('Invalid Login credentials.', false);
-    };
+      userService.login(vm.username, vm.password)
+        .then(function(response) {
+          if (response.data.success)
+            shell.username = response.data.user.username;
+          shell.alert(response.data.message, response.data.success);
+        });
+    }
 
     function signOut() {
       shell.username = 'guest';
-    };
+    }
 
     function resetPassword() {
-      alert('work in progress');
+      shell.alert('Work in progress...', false);
     }
   }
 })();
