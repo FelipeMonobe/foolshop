@@ -3,12 +3,19 @@
     .module('app')
     .run(init);
 
-  init.$inject = ['$rootScope', '$alert'];
+  init.$inject = ['$rootScope', '$alert', 'userService'];
 
-  function init($rootScope, $alert) {
+  function init($rootScope, $alert, userService) {
     var shell = $rootScope;
 
     shell.username = 'guest';
+
+    var session = userService.checkSession()
+      .then(function(response) {
+        if (response.sessionData)
+          shell.username = response.sessionData.username;
+      });
+
     shell.alert = function(text, isSuccess) {
       if (isSuccess)
         return $alert({

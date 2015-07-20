@@ -28,6 +28,16 @@ module.exports = function(app) {
         });
   };
 
+  controller.checkSession = function(req, res) {
+    if (req.session.userData)
+      return res.json({
+        sessionData: req.session.userData
+      });
+    return res.json({
+      sessionData: null
+    });
+  };
+
   controller.getUser = function(req, res) {
     User
       .find({
@@ -138,10 +148,11 @@ module.exports = function(app) {
   controller.signOut = function(req, res) {
     var username = req.session.userData.username;
     req.session.destroy(function(error) {
-      return res.json({
-        success: false,
-        message: 'Could not sign out.'
-      });
+      if (error)
+        return res.json({
+          success: false,
+          message: 'Could not sign out.'
+        });
     });
 
     console.log();

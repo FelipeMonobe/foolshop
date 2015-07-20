@@ -8,6 +8,7 @@
   function userService($http) {
     return {
       addUser: addUser,
+      checkSession: checkSession,
       getUser: getUser,
       getUserByEmail: getUserByEmail,
       getUserByUsername: getUserByUsername,
@@ -20,6 +21,16 @@
       return $http.post('/api/user/add', model)
         .catch(function(error) {
           console.log('XHR failed for addUser. ' + error.data.message);
+        });
+    }
+
+    function checkSession() {
+      return $http.get('/api/user/checkSession')
+        .then(function(response) {
+          return response.data;
+        })
+        .catch(function(error) {
+          console.log('XHR failed for checkSession. ' + error.data.message);
         });
     }
 

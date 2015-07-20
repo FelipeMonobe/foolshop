@@ -18,7 +18,9 @@ module.exports = function() {
   app.use(bodyParser.json());
   app.use(express.static('./public'));
   app.use(cookieParser());
-  app.use(session({secret: 'hRlsmN62D7aB3'}));
+  app.use(session({
+    secret: 'hRlsmN62D7aB3'
+  }));
 
   load('models', {
       cwd: 'app'
