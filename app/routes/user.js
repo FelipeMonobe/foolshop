@@ -13,8 +13,11 @@ module.exports = function(app) {
   app.route('/api/user/getUserByUsername')
     .get(controller.getUserByUsername);
 
-    app.route('/api/user/login')
-      .get(controller.login);
+  app.route('/api/user/signIn')
+    .get(controller.signIn);
+
+  app.route('/api/user/signOut')
+    .get(controller.signOut);
 
   app.route('/api/user/remove/:id')
     .delete(controller.removeUser);

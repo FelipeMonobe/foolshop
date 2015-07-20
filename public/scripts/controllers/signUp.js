@@ -44,22 +44,22 @@
       }
       vm.form_InvalidUsername = false;
     }
-  }
 
-  function saveUser() {
-    var user = {
-      username: vm.username,
-      email: vm.email,
-      password: vm.password
-    };
+    function saveUser() {
+      var user = {
+        username: vm.username,
+        email: vm.email,
+        password: vm.password
+      };
 
-    return userService.addUser(user)
-      .then(function(response) {
-        if (response.data.success) {
-          $location.path('/');
-          shell.username = user.username;
-        }
-        shell.alert(response.data.message, response.data.success);
-      });
+      return userService.addUser(user)
+        .then(function(response) {
+          if (response.data.success) {
+            $location.path('/');
+            shell.username = user.username;
+          }
+          shell.alert(response.data.message, response.data.success);
+        });
+    }
   }
 })();

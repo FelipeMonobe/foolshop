@@ -107,7 +107,7 @@ module.exports = function(app) {
         });
   };
 
-  controller.login = function(req, res) {
+  controller.signIn = function(req, res) {
     User
       .find({
         username: req.query.username,
@@ -119,12 +119,12 @@ module.exports = function(app) {
 
           req.session.userData = users[0];
 
-          console.log('Session data:');
-          console.log(req.session.userData);
+          console.log();
+          console.log(req.session.userData.username + ' has signed in.');
 
           return res.json({
             success: true,
-            message: 'Successful login.',
+            message: 'Successful sign in.',
             user: users[0]
           });
         }
@@ -133,6 +133,24 @@ module.exports = function(app) {
           message: 'Invalid user credentials.'
         });
       });
+  };
+
+  controller.signOut = function(req, res) {
+    var username = req.session.userData.username;
+    req.session.destroy(function(error) {
+      return res.json({
+        success: false,
+        message: 'Could not sign out.'
+      });
+    });
+
+    console.log();
+    console.log(username + ' has signed out.');
+
+    return res.json({
+      success: true,
+      message: 'You were successfully signed out.'
+    });
   };
 
   controller.removeUser = function(req, res) {

@@ -14,7 +14,7 @@
     vm.btn_resetPassword = resetPassword;
 
     function signIn() {
-      userService.login(vm.username, vm.password)
+      userService.signIn(vm.username, vm.password)
         .then(function(response) {
           if (response.data.success)
             shell.username = response.data.user.username;
@@ -23,7 +23,12 @@
     }
 
     function signOut() {
-      shell.username = 'guest';
+      userService.signOut()
+        .then(function(response) {
+          if (response.data.success)
+            shell.username = 'guest';
+          shell.alert(response.data.message, response.data.success);
+        });
     }
 
     function resetPassword() {

@@ -12,6 +12,7 @@ module.exports = function(uri) {
 
   mongoose.connection.on('connected', function() {
     console.log('Mongoose connected at ' + uri);
+    console.log();
   });
 
   mongoose.connection.on('disconnected', function() {
@@ -25,6 +26,7 @@ module.exports = function(uri) {
   process.on('SIGINT', function() {
     mongoose.connection.close(function() {
       console.log('Mongoose disconnected by application shutdown');
+      console.log();
       process.exit(0);
     });
   });

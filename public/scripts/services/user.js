@@ -11,7 +11,8 @@
       getUser: getUser,
       getUserByEmail: getUserByEmail,
       getUserByUsername: getUserByUsername,
-      login: login,
+      signIn: signIn,
+      signOut: signOut,
       removeUser: removeUser
     };
 
@@ -54,15 +55,22 @@
         });
     }
 
-    function login(username, password) {
-      return $http.get('/api/user/login', {
+    function signIn(username, password) {
+      return $http.get('/api/user/signIn', {
           params: {
             username: username,
             password: password
           }
         })
         .catch(function(error) {
-          console.log('XHR failed for login. ' + error.data.message);
+          console.log('XHR failed for signIn. ' + error.data.message);
+        });
+    }
+
+    function signOut(username, password) {
+      return $http.get('/api/user/signOut')
+        .catch(function(error) {
+          console.log('XHR failed for signOut. ' + error.data.message);
         });
     }
 

@@ -8,4 +8,5 @@ app.listen(port);
 
 module.exports = app;
 
+console.log();
 console.log('Server listening at http://localhost:' + port);
