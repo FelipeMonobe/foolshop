@@ -17,6 +17,7 @@
     "jquery": "~2.1.4",
     "bootstrap-additions": "~0.3.1",
     "angular-motion": "~0.4.2",
-    "angular-animate": "~1.4.0"
+    "angular-animate": "~1.4.0",
+    "ng-file-upload": "~5.0.9"
   }
 }

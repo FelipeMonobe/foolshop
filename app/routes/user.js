@@ -4,8 +4,8 @@ module.exports = function(app) {
   app.route('/api/user/add')
     .post(controller.addUser);
 
-    app.route('/api/user/checkSession')
-      .get(controller.checkSession);
+  app.route('/api/user/checkSession')
+    .get(controller.checkSession);
 
   app.route('/api/user/get')
     .get(controller.getUser);

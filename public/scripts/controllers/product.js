@@ -16,10 +16,9 @@
 
     shell.title = 'Products';
 
-    vm.btn_AddProduct = addProduct;
+    vm.form_AddProduct = addProduct;
     vm.btn_OpenModal = openModal;
     vm.btn_RemoveProduct = removeProduct;
-    vm.form_SaveProduct = saveProduct;
     vm.load_FetchProduct = fetchProduct;
     vm.load_products = [];
 
@@ -32,36 +31,13 @@
         modal.show();
     }
 
-    function addProduct() {
-      function generateRandomMock() {
-        var _id = Math.floor(Math.random() * (100 - 1 + 1)) + 1;
-
-        return {
-          name: 'Product#' + _id,
-          stock: _id * 3,
-          description: undefined,
-          brand: undefined,
-          price: (123 / _id).toFixed(2),
-          creationDate: undefined,
-          isActive: true
-        };
-      }
-
-      return productService.addProduct(generateRandomMock())
-        .then(function(response) {
-          if (response.data.success)
-            vm.products.push(response.data.product);
-          shell.alert(response.data.message, response.data.success);
-          return vm.products;
-        });
-    }
-
     function clearFields() {
       vm.productName = undefined;
       vm.productStock = undefined;
       vm.productDescription = undefined;
       vm.productBrand = undefined;
       vm.productPrice = undefined;
+      vm.productImage = undefined;
     }
 
     function fetchProduct() {
@@ -83,13 +59,14 @@
         });
     }
 
-    function saveProduct() {
+    function addProduct() {
       var product = {
         name: vm.productName,
         stock: vm.productStock,
         description: vm.productDescription,
         brand: vm.productBrand,
-        price: vm.productPrice
+        price: vm.productPrice,
+        image: vm.productImage
       };
 
       return productService.addProduct(product)
