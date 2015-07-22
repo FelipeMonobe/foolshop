@@ -1,21 +1,23 @@
-var express = require('express'),
-  bodyParser = require('body-parser'),
-  load = require('express-load'),
+var bodyParser = require('body-parser'),
   cookieParser = require('cookie-parser'),
+  express = require('express'),
+  load = require('express-load'),
+  multer = require('multer'),
   session = require('express-session');
 
 module.exports = function() {
   var app = express();
 
-  //environment configs
   app.set('views', './app/views');
   app.set('view engine', 'ejs');
 
-  //middleware configs
   app.use(bodyParser.urlencoded({
     extended: true
   }));
   app.use(bodyParser.json());
+
+  app.use(multer({ dest: './app/uploads/'}).single('productImage'));
+
   app.use(express.static('./public'));
   app.use(cookieParser());
   app.use(session({

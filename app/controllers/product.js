@@ -62,5 +62,9 @@ module.exports = function(app) {
       });
   };
 
+  controller.uploadImage = function(req, res) {
+    console.log(req.file);
+  };
+
   return controller;
 };
