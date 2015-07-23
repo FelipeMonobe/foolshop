@@ -63,7 +63,7 @@ module.exports = function(app) {
   };
 
   controller.uploadImage = function(req, res) {
-    console.log(req.file);
+    console.log('PLACEHOLDER FOR POSTED IMAGE');
   };
 
   return controller;

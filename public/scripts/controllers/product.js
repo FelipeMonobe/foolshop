@@ -88,15 +88,7 @@
       if (file.length) {
         Upload.upload({
             url: '/api/product/uploadImage',
-            fields: {
-              'name': vm.productName,
-              'stock': vm.productStock,
-              'description': vm.productDescription,
-              'brand': vm.productBrand,
-              'price': vm.productPrice
-            },
-            file: file[0],
-            fileName: 'productImage.jpeg'
+            file: file[0]
           })
           .progress(function(evt) {
             vm.showProgress = true;

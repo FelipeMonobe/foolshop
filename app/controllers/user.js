@@ -130,7 +130,7 @@ module.exports = function(app) {
           req.session.userData = users[0];
 
           console.log();
-          console.log(req.session.userData.username + ' has signed in.');
+          console.log('[' + new Date().toISOString() + '] ' + req.session.userData.username + ' has signed in.');
 
           return res.json({
             success: true,
@@ -156,7 +156,7 @@ module.exports = function(app) {
     });
 
     console.log();
-    console.log(username + ' has signed out.');
+    console.log('[' + new Date().toISOString() + '] ' + username + ' has signed out.');
 
     return res.json({
       success: true,

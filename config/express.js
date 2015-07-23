@@ -2,7 +2,6 @@ var bodyParser = require('body-parser'),
   cookieParser = require('cookie-parser'),
   express = require('express'),
   load = require('express-load'),
-  multer = require('multer'),
   session = require('express-session');
 
 module.exports = function() {
@@ -15,9 +14,6 @@ module.exports = function() {
     extended: true
   }));
   app.use(bodyParser.json());
-
-  app.use(multer({ dest: './app/uploads/'}).single('productImage'));
-
   app.use(express.static('./public'));
   app.use(cookieParser());
   app.use(session({
