@@ -2,7 +2,7 @@ require('./config/database')('mongodb://localhost/foolshop');
 
 var express = require('express'),
   app = require('./config/express')(app),
-  port = process.env.ENV_PORT || 1337;
+  port = process.env.PORT || 5000;
 
 app.listen(port);
 
