@@ -26,7 +26,7 @@
     "express-load": "^1.1.14",
     "express-session": "^1.11.3",
     "mongo-sanitize": "^1.0.0",
-    "mongoose": "^4.0.5",
+    "mongoose": "^4.0.0",
     "mongoose-auto-increment": "^4.0.0",
     "multer": "^1.0.1"
   }
