@@ -72,3 +72,9 @@ header {
 .invalidTxt {
   border: 2px solid red !important;
 }
+.mapStyle {
+  width: 280px;
+  height: 280px;
+  margin-right: 4.7%;
+  margin-top: 2.5%
+}
