@@ -1,4 +1,6 @@
-require('./config/database')('mongodb://localhost/foolshop');
+var dbURL = process.env.DATABASE_URL;
+
+require('./config/database')('mongodb://' + dbURL + '/foolshop');
 
 var express = require('express'),
   app = require('./config/express')(app),

@@ -4,4 +4,3 @@ node_modules/
 gulpfile.js
 public/libs/**
 readme.md
-!public/libs/bootstrap/dist/bootstrap-theme.css
