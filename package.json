@@ -1,6 +1,9 @@
 {
   "name": "foolshop",
   "version": "1.0.0",
+  "engines" : {
+    "node": "0.12.4"
+  },
   "description": "",
   "main": "index.js",
   "scripts": {
